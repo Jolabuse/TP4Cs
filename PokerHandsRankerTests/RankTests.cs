@@ -8,6 +8,14 @@ namespace PokerHandsRankerTests
 {
     public class RankTests
     {
+        private IRankService _rankService;
+        
+        [SetUp]
+        public void SetUp()
+        {
+            _rankService = new RankService();
+        }
+        
         [Test]
         public void Should_Have_Rank1_Better_Than_Rank2_When_Higher()
         {

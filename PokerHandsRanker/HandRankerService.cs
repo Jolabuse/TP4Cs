@@ -28,15 +28,14 @@ namespace PokerHandsRanker
 
             for (var i = 1; i < hand.Count; i++)
             {
-                pWonbool = rankHand[pWon].IsBetterRank(rankHand[i]) == true;
+                pWonbool = rankHand[pWon].IsBetterRank(rankHand[i]);
+                
                 if (pWonbool == false)
                 {
                     pWon = i;
                 }
             }
-
             
-
             return pWon+1;
         }
 

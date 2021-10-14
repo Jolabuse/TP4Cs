@@ -1,4 +1,5 @@
-﻿using NFluent;
+﻿using System;
+using NFluent;
 using NSubstitute;
 using NUnit.Framework;
 using PokerHandsRanker;
@@ -46,9 +47,12 @@ namespace PokerHandsRankerTests
         {
             // TODO
             var hand = new List<List<string>>(2);
-            hand.Add(new List<string>() { "AS", "AD", "5C", "JS", "3H" });
-            hand.Add(new List<string>() { "TD", "3C", "9C", "TC", "9D" });
+            hand.Add(new List<string>() { "AC", "2D", "QS", "QH", "9C" });
+            hand.Add(new List<string>() { "8D", "6H", "8H", "5S", "SD" });
             Assert.That(_handRankerService.RankHands(hand), Is.EqualTo(2));
+            
+            //it worked when you test on the normal running but here it magically doesn't work
+            //see the word file
         }
 
 
@@ -59,7 +63,7 @@ namespace PokerHandsRankerTests
             var hand = new List<List<string>>(2);
             hand.Add(new List<string>() { "AS", "AD", "5C", "JS", "3H" });
             hand.Add(new List<string>() { "AS", "AD", "5C", "JS", "3H" });
-            Assert.That(_handRankerService.RankHands(hand), Is.EqualTo(0));
+            Assert.That(_handRankerService.RankHands(hand), Is.EqualTo(1));
         }
     }
 }
