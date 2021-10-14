@@ -23,12 +23,21 @@ namespace PokerHandsRankerTests
         public void Should_Call_IRankService_When_Ranking_Hands()
         {
             // TODO
+            var hand = new List<List<string>>(2);
+            hand.Add(new List<string>());
+            hand.Add(new List<string>());
+            _handRankerService.RankHands(hand);
+            _rankService.Received().GetRankFromHand(hand[0]);
         }
 
         [Test]
         public void Should_Have_Player1_Win_If_His_Hand_Is_Better()
         {
             // TODO
+            var hand = new List<List<string>>(2);
+            hand.Add(new List<string>() { "TD", "3C", "9C", "TC", "9D" });
+            hand.Add(new List<string>() { "AS", "AD", "5C", "JS", "3H" });
+            Assert.That(_handRankerService.RankHands(hand), Is.EqualTo(1));
         }
 
 
@@ -36,6 +45,10 @@ namespace PokerHandsRankerTests
         public void Should_Have_Player2_Win_If_His_Hand_Is_Better()
         {
             // TODO
+            var hand = new List<List<string>>(2);
+            hand.Add(new List<string>() { "AS", "AD", "5C", "JS", "3H" });
+            hand.Add(new List<string>() { "TD", "3C", "9C", "TC", "9D" });
+            Assert.That(_handRankerService.RankHands(hand), Is.EqualTo(2));
         }
 
 
@@ -43,6 +56,10 @@ namespace PokerHandsRankerTests
         public void Should_Have_A_Tie_If_Hands_Are_Equal()
         {
             // TODO
+            var hand = new List<List<string>>(2);
+            hand.Add(new List<string>() { "AS", "AD", "5C", "JS", "3H" });
+            hand.Add(new List<string>() { "AS", "AD", "5C", "JS", "3H" });
+            Assert.That(_handRankerService.RankHands(hand), Is.EqualTo(0));
         }
     }
 }
